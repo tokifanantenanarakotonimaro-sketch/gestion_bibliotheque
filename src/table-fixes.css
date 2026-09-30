@@ -1,0 +1,261 @@
+/* ============================================
+   CORRECTION TABLEAUX — Bibliothèque
+   Fix l'alignement des colonnes dans tous
+   les tableaux de l'application.
+   ============================================ */
+
+/* --- Base commune : le tableau garde une grille stable sur toutes les pages --- */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrap table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+/* --- Alignement du contenu --- */
+.table-wrap th,
+.table-wrap td {
+  box-sizing: border-box;
+  text-align: left;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  height: 56px;
+}
+
+.table-wrap th {
+  height: 52px;
+  padding: 12px 16px;
+}
+
+.table-wrap td {
+  padding: 8px 16px;
+}
+
+/* --- Ligne de tableau avec actions --- */
+.table-wrap .row-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.table-wrap .badge {
+  padding: 4px 9px;
+  line-height: 1.2;
+}
+
+/* La pagination reprend les mêmes pistes que le tableau qu'elle accompagne. */
+.table-region {
+  overflow-x: auto;
+}
+
+.table-region .table-wrap {
+  overflow-x: visible;
+}
+
+.table-pagination {
+  display: grid;
+  grid-template-columns: var(--table-columns);
+  align-items: center;
+  min-width: 760px;
+  margin-top: 0;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(231, 223, 210, 0.8);
+}
+
+.table-pagination > span {
+  grid-column: 1 / 2;
+  justify-self: start;
+}
+
+.table-pagination .pagination-controls {
+  grid-column: 4 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.table-region:has(.table-books) {
+  --table-columns: 26% 20% 16% 14% 24%;
+}
+
+.table-region:has(.table-compact) {
+  --table-columns: 28% 24% 18% 14% 16%;
+}
+
+.table-region:has(.table-loans) {
+  --table-columns: 18% 16% 15% 15% 13% 23%;
+}
+
+.table-region:has(.table-history) {
+  --table-columns: 24% 20% 20% 20% 16%;
+}
+
+/* ============================================
+   TABLEAU LIVRES (BooksPage, SearchPage)
+   Colonnes: Titre | Auteur | Catégorie | Disponibilité | Actions
+   ============================================ */
+.table-books th:nth-child(1),
+.table-books td:nth-child(1) {
+  width: 26%;
+}
+
+.table-books th:nth-child(2),
+.table-books td:nth-child(2) {
+  width: 20%;
+}
+
+.table-books th:nth-child(3),
+.table-books td:nth-child(3) {
+  width: 16%;
+}
+
+.table-books th:nth-child(4),
+.table-books td:nth-child(4) {
+  width: 14%;
+}
+
+.table-books th:nth-child(5),
+.table-books td:nth-child(5) {
+  width: 24%;
+}
+
+/* ============================================
+   TABLEAU DASHBOARD (BookTable compact)
+   Colonnes: Titre | Auteur | Catégorie | Disponibilité | Date ajout
+   ============================================ */
+.table-compact th:nth-child(1),
+.table-compact td:nth-child(1) {
+  width: 28%;
+}
+
+.table-compact th:nth-child(2),
+.table-compact td:nth-child(2) {
+  width: 24%;
+}
+
+.table-compact th:nth-child(3),
+.table-compact td:nth-child(3) {
+  width: 18%;
+}
+
+.table-compact th:nth-child(4),
+.table-compact td:nth-child(4) {
+  width: 14%;
+}
+
+.table-compact th:nth-child(5),
+.table-compact td:nth-child(5) {
+  width: 16%;
+}
+
+/* ============================================
+   TABLEAU EMPRUNTS (LoansPage)
+   Colonnes: Livre | Utilisateur | Date d'emprunt | Date d'échéance | Statut | Actions
+   ============================================ */
+.table-loans th:nth-child(1),
+.table-loans td:nth-child(1) {
+  width: 18%;
+}
+
+.table-loans th:nth-child(2),
+.table-loans td:nth-child(2) {
+  width: 16%;
+}
+
+.table-loans th:nth-child(3),
+.table-loans td:nth-child(3) {
+  width: 15%;
+}
+
+.table-loans th:nth-child(4),
+.table-loans td:nth-child(4) {
+  width: 15%;
+}
+
+.table-loans th:nth-child(5),
+.table-loans td:nth-child(5) {
+  width: 13%;
+}
+
+.table-loans th:nth-child(6),
+.table-loans td:nth-child(6) {
+  width: 23%;
+}
+
+/* ============================================
+  TABLEAU HISTORIQUE (HistoryPage)
+  Colonnes: Titre | Auteur | Date d'emprunt | Date de retour | Statut
+  ============================================ */
+.table-history th:nth-child(1),
+.table-history td:nth-child(1) {
+  width: 24%;
+}
+
+.table-history th:nth-child(2),
+.table-history td:nth-child(2) {
+  width: 20%;
+}
+
+.table-history th:nth-child(3),
+.table-history td:nth-child(3) {
+  width: 20%;
+}
+
+.table-history th:nth-child(4),
+.table-history td:nth-child(4) {
+  width: 20%;
+}
+
+.table-history th:nth-child(5),
+.table-history td:nth-child(5) {
+  width: 16%;
+}
+
+/* ============================================
+   TABLEAU UTILISATEURS (UsersPage)
+   Colonnes: Utilisateur | Email | Rôle | Statut
+   ============================================ */
+.table-users th:nth-child(1),
+.table-users td:nth-child(1) {
+  width: 26%;
+}
+
+.table-users th:nth-child(2),
+.table-users td:nth-child(2) {
+  width: 34%;
+}
+
+.table-users th:nth-child(3),
+.table-users td:nth-child(3) {
+  width: 20%;
+}
+
+.table-users th:nth-child(4),
+.table-users td:nth-child(4) {
+  width: 20%;
+}
+
+/* --- Responsive tableaux --- */
+@media (max-width: 768px) {
+  .table-wrap th,
+  .table-wrap td {
+    padding: 12px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-wrap th,
+  .table-wrap td {
+    padding: 10px 10px;
+    font-size: 12px;
+  }
+}
